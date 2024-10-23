@@ -1,0 +1,4 @@
+En el presente archivo .txt, tanto Paulo Álvarez Da Costa como Juan Marín Olloqui manifiestan haber utilizado inteligencia artificial generativa para los siguientes propósitos:
+- Resolver dudas que no pudieron ser aclaradas mediante los recursos de w3Schools o los apuntes sobre los lenguajes HTML y CSS.
+- Revisar y obtener explicaciones sobre fragmentos de código.
+Asimismo, queremos señalar que el uso de la IA no resultó significativamente útil, ya que en algunos casos los conceptos no fueron explicados de manera precisa, lo que generó aún más incertidumbre.
