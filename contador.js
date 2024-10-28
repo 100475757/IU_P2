@@ -1,16 +1,17 @@
 // Función para calcular el tiempo restante hasta el 24 de diciembre a las 23:59
+
 function calcularTiempoRestante() {
     const ahora = new Date();
     const añoActual = ahora.getFullYear();
     const fechaObjetivo = new Date(añoActual, 11, 24, 23, 59, 0); // Mes 11 es diciembre (0-indexado)
-
-    // Si la fecha objetivo ya pasó este año, usar el próximo año
-    if (ahora > fechaObjetivo) {
-        fechaObjetivo.setFullYear(añoActual + 1);
-    }
-
     const diferencia = fechaObjetivo - ahora;
 
+    if (diferencia <= 0) {
+        document.getElementById('contador').innerHTML = '🎅 ¡Feliz Navidad! 🎅';
+        clearInterval(interval); 
+    }
+
+    // Calcular los días, horas, minutos y segundos
     const segundosTotales = Math.floor(diferencia / 1000);
     const minutosTotales = Math.floor(segundosTotales / 60);
     const horasTotales = Math.floor(minutosTotales / 60);
@@ -21,15 +22,11 @@ function calcularTiempoRestante() {
     const horas = horasTotales % 24;
     const días = díasTotales;
 
-    // Actualizar el HTML con los valores calculados
-    document.getElementById('dias').textContent = días;
-    document.getElementById('horas').textContent = horas;
-    document.getElementById('minutos').textContent = minutos;
-    document.getElementById('segundos').textContent = segundos;
+    document.getElementById('dias').innerHTML = días;
+    document.getElementById('horas').innerHTML = horas;
+    document.getElementById('minutos').innerHTML= minutos;
+    document.getElementById('segundos').innerHTML= segundos;
 }
 
-// Actualizar el contador cada segundo
-setInterval(calcularTiempoRestante, 1000);
-
-// Llamar a la función una vez para inicializar el contador inmediatamente
+const interval = setInterval(calcularTiempoRestante, 1000);
 calcularTiempoRestante();
