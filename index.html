@@ -4,6 +4,7 @@
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navidades Norteñas</title>
+    <link rel="icon" type="image/jpg" href="Images/reno.jpg">
     <link rel="stylesheet" href="styles.CSS"> 
     <script src="main.js"></script>
 </head>
@@ -20,8 +21,8 @@
             <li><a href="#Juega" class="highlight">¡Juega!</a></li>
         </ul>
         <div class="button">
-            <button id ="btn-open-login">Iniciar sesión</button>
-            <button id ="btn-open-register">Registrarse</button>
+            <button id="btn-open-login">Iniciar sesión</button>
+            <button id="btn-open-register">Registrarse</button>
         </div>
     </nav>
     <section id="Inicio">
@@ -33,9 +34,9 @@
                 <span id="minutos"></span> minutos
                 <span id="segundos"></span> segundos
             </div>
-            <dialog id="modal-register" class="modal-register">
+            <dialog id="modal-register">
                 <h2>Registro de Usuario</h2>
-                <form id="register-form" action="#" method="POST">
+                <form id="registerForm" action="#" method="POST">
                     <div class="form-group-reg">
                         <label for="username">Nombre de usuario *</label>
                         <input type="text" id="username" name="username" required minlength="3" placeholder="Introduce tu nombre de usuario">
@@ -45,24 +46,24 @@
                         <input type="password" id="password" name="password" required placeholder="Introduce tu contraseña">
                     </div>
                     <div class="form-group-reg">
-                        <label for="confirm-password">Repetir contraseña *</label>
-                        <input type="password" id="confirm-password" name="confirm-password" required placeholder="Repite tu contraseña">
+                        <label for="confirmPassword">Repetir contraseña *</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Repite tu contraseña">
                     </div>
                     <div class="form-group-reg">
                         <label for="email">Correo electrónico *</label>
                         <input type="email" id="email" name="email" required placeholder="Introduce tu correo electrónico">
                     </div>
                     <div class="form-group-reg">
-                        <label for="city">Ciudad *</label>
-                        <input type="text" id="city" name="city" required minlength="3" placeholder="Introduce tu ciudad">
+                        <label for="city-registro">Ciudad *</label>
+                        <input type="text" id="city-registro" name="city" required minlength="3" placeholder="Introduce tu ciudad">
                     </div>
                     <div class="form-group-reg">
-                        <label for="country">País *</label>
-                        <input type="text" id="country" name="country" required minlength="3" placeholder="Introduce tu país">
+                        <label for="country-registro">País *</label>
+                        <input type="text" id="country-registro" name="country" required minlength="3" placeholder="Introduce tu país">
                     </div>
                     <div class="form-group-reg">
-                        <label for="gender">Género</label>
-                        <select id="gender" name="gender">
+                        <label for="gender-registro">Género</label>
+                        <select id="gender-registro" name="gender">
                             <option value="Masculino">Masculino</option>
                             <option value="Femenino">Femenino</option>
                             <option value="Otro">Otro</option>
@@ -71,14 +72,24 @@
                     </div>
                     <div class="form-group-reg">
                         <label for="children">¿Cuántos hijos / hijas tienes?</label>
-                        <input type="number" id="children" name="children" min="0" value="0">
+                        <input type="number" id="children" name="children" min="0">
                     </div>
-                    <div id="children-details"></div>
-                    <div class="modal-buttons">
-                        <input type="submit" value="Aceptar">
-                        <input type="reset" value="Limpiar">
-                        <button id="btn-close-register" type="button">Cancelar</button>
-                    </div>
+                    <div id="childrenDetails"></div>
+                    <input type="submit" value="Registrarse">
+                    <input type="reset" value="Limpiar" id="clearFields">
+                    <button type="button" id="btn-close-register">Cerrar</button>
+                </form>
+            </dialog>
+            <dialog id="modal-login">
+                <form id="loginForm">
+                    <label for="login-username">Nombre de usuario*</label>
+                    <input type="text" id="login-username" required>
+                    
+                    <label for="login-password">Contraseña*</label>
+                    <input type="password" id="login-password" required>
+                    
+                    <button type="submit">Entrar</button>
+                    <button type="button" id="btn-close-login">Cancelar</button>
                 </form>
             </dialog>
             <button class="empezar">Empezar</button>
@@ -87,190 +98,190 @@
     <section id="Papa_Noel" class="h2-content">
         <h2>Papá Noel</h2>
     </section>
-        <div class="image-text-container">
-            <img id="img1" src="Images/santa-claus.avif" alt="Papá Noel" class="image-papa-noel">
-            <div class="text-container">
-                <h3>¡Vive la magia de la Navidad durante todo el año!</h3>
-                <p>¡Hola pequeños y grandes amigos! Soy Papá Noel y 
-                    estoy aquí para compartir con vosotros la alegría y 
-                    la esperanza de la Navidad. Con mi trineo y mis renos 
-                    viajo por todo el mundo llevando regalos y felicidad a 
-                    todos los niños.</p>
-                <p>Por último, recordad que la Navidad no solo se trata de recibir, sino también de dar. 
-                    Compartid el espíritu navideño con vuestros seres queridos y hagamos de esta festividad
-                    un momento inolvidable para todos.¡Estoy deseando leer tus cartas y hacer realidad 
-                    tus sueños! </p>
-            </div>
+    <div class="image-text-container">
+        <img id="img1" src="Images/santa-claus.avif" alt="Papá Noel" class="image-papa-noel">
+        <div class="text-container">
+            <h3>¡Vive la magia de la Navidad durante todo el año!</h3>
+            <p>¡Hola pequeños y grandes amigos! Soy Papá Noel y 
+                estoy aquí para compartir con vosotros la alegría y 
+                la esperanza de la Navidad. Con mi trineo y mis renos 
+                viajo por todo el mundo llevando regalos y felicidad a 
+                todos los niños.</p>
+            <p>Por último, recordad que la Navidad no solo se trata de recibir, sino también de dar. 
+                Compartid el espíritu navideño con vuestros seres queridos y hagamos de esta festividad
+                un momento inolvidable para todos.¡Estoy deseando leer tus cartas y hacer realidad 
+                tus sueños! </p>
         </div>
-    <section id="Las_Cartas" class="h2-content">
-        <h2>Las Cartas</h2>
-    </section>
-    <div class="cartas-container">
-        <div class="carta">
-            <div class="img-container">
-                <img src="Images/Juan.jpg" alt="Foto de Juan">
-            </div>
-            <div class="info-container">
-                <p><strong>Nombre:</strong> Juan</p>
-                <p><strong>Ciudad:</strong> Madrid</p>
-                <p><strong>País:</strong> España</p><br>
-                <p>Hola Papá Noel, quiero un futbolín para poder jugar con mi hermano y amigos.</p>
-            </div>
+    </div>
+<section id="Las_Cartas" class="h2-content">
+    <h2>Las Cartas</h2>
+</section>
+<div class="cartas-container">
+    <div class="carta">
+        <div class="img-container">
+            <img src="Images/Juan.jpg" alt="Foto de Juan">
         </div>
-        <div class="carta">
-            <div class="img-container">
-                <img src="Images/Ana.jpg" alt="Foto de Ana">
-            </div>
-            <div class="info-container">
-                <p><strong>Nombre:</strong> Ana</p>
-                <p><strong>Ciudad:</strong> Barcelona</p>
-                <p><strong>País:</strong> España</p><br>
-                <p>Querido Papá Noel, este año me gustaría tener unos patines nuevos.</p>
-            </div>
+        <div class="info-container">
+            <p><strong>Nombre:</strong> Juan</p>
+            <p><strong>Ciudad:</strong> Madrid</p>
+            <p><strong>País:</strong> España</p><br>
+            <p>Hola Papá Noel, quiero un futbolín para poder jugar con mi hermano y amigos.</p>
         </div>
-        <div class="carta">
-            <div class="img-container">
-                <img src="Images/Luis.jpg" alt="Foto de Luis">
-            </div>
-            <div class="info-container">
-                <p><strong>Nombre:</strong> Luis</p>
-                <p><strong>Ciudad:</strong> Sevilla</p>
-                <p><strong>País:</strong> España</p><br>
-                <p>¡Espero que no te olvides de mí! Este año te voy a pedir la camiseta de MBAPPÉ.</p>
-            </div>
+    </div>
+    <div class="carta">
+        <div class="img-container">
+            <img src="Images/Ana.jpg" alt="Foto de Ana">
         </div>
-        <div class="carta">
-            <div class="img-container">
-                <img src="Images/María.jpg" alt="Foto de María">
-            </div>
-            <div class="info-container">
-                <p><strong>Nombre:</strong> María</p>
-                <p><strong>Ciudad:</strong> Valencia</p>
-                <p><strong>País:</strong> España</p><br>
-                <p>Hola Papá Noel, este año he sido muy buena y me gustaría tener una Nancy y un pijama nuevo.</p>
-            </div>
+        <div class="info-container">
+            <p><strong>Nombre:</strong> Ana</p>
+            <p><strong>Ciudad:</strong> Barcelona</p>
+            <p><strong>País:</strong> España</p><br>
+            <p>Querido Papá Noel, este año me gustaría tener unos patines nuevos.</p>
         </div>
-        <div class="carta">
-            <div class="img-container">
-                <img src="Images/Pedro.jpg" alt="Foto de Pedro">
-            </div>
-            <div class="info-container">
-                <p><strong>Nombre:</strong> Pedro</p>
-                <p><strong>Ciudad:</strong> Bilbao</p>
-                <p><strong>País:</strong> España</p><br>
-                <p>Querido Papá Noel, me encantaría tener un tren de juguete y una consola nueva.</p>
+    </div>
+    <div class="carta">
+        <div class="img-container">
+            <img src="Images/Luis.jpg" alt="Foto de Luis">
+        </div>
+        <div class="info-container">
+            <p><strong>Nombre:</strong> Luis</p>
+            <p><strong>Ciudad:</strong> Sevilla</p>
+            <p><strong>País:</strong> España</p><br>
+            <p>¡Espero que no te olvides de mí! Este año te voy a pedir la camiseta de MBAPPÉ.</p>
+        </div>
+    </div>
+    <div class="carta">
+        <div class="img-container">
+            <img src="Images/María.jpg" alt="Foto de María">
+        </div>
+        <div class="info-container">
+            <p><strong>Nombre:</strong> María</p>
+            <p><strong>Ciudad:</strong> Valencia</p>
+            <p><strong>País:</strong> España</p><br>
+            <p>Hola Papá Noel, este año he sido muy buena y me gustaría tener una Nancy y un pijama nuevo.</p>
+        </div>
+    </div>
+    <div class="carta">
+        <div class="img-container">
+            <img src="Images/Pedro.jpg" alt="Foto de Pedro">
+        </div>
+        <div class="info-container">
+            <p><strong>Nombre:</strong> Pedro</p>
+            <p><strong>Ciudad:</strong> Bilbao</p>
+            <p><strong>País:</strong> España</p><br>
+            <p>Querido Papá Noel, me encantaría tener un tren de juguete y una consola nueva.</p>
 
-            </div>
-        </div>
-        <div class="carta">
-            <div class="img-container">
-                <img src="Images/Lucía.jpg" alt="Foto de Lucía">
-            </div>
-            <div class="info-container">
-                <p><strong>Nombre:</strong> Lucía</p>
-                <p><strong>Ciudad:</strong> Zaragoza</p>
-                <p><strong>País:</strong> España</p><br>
-                <p>Querido Papá Noel, espero recibir una bicicleta nueva y caramelos.</p>
-            </div>
         </div>
     </div>
-    <section id="Envia_tu_carta" class="h2-content">
-        <h2>Envía tu carta</h2>
-    </section>
-    <div class="form-container">
-        <form class="form-horizontal">
-            <div class="form-group">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre">
-            </div>
-            <div class="form-group">
-                <label for="apellidos">Apellidos:</label>
-                <input type="text" id="apellidos" name="apellidos">
-            </div>
-            <div class="form-group">
-                <label for="correo">Correo electrónico:</label>
-                <input type="email" id="correo" name="correo">
-            </div>
-            <div class="form-group">
-                <label for="contraseña">Contraseña:</label>
-                <input type="password" id="contraseña" name="contraseña">
-            </div>
-            <div class="form-group">
-                <label for="ciudad">Ciudad:</label>
-                <input type="text" id="ciudad" name="ciudad">
-            </div>
-            <div class="form-group">
-                <label for="país">País:</label>
-                <input type="text" id="país" name="país">
-            </div>
-            <div class="form-group">
-                <label for="carta">Carta para Papá Noel:</label>
-                <textarea id="carta" name="carta"></textarea>
-            </div>
-            <input class="botons" type="submit" value="Envía">
-            <p>Revisa nuestros <a href="#">Términos y condiciones</a></p>
-        </form>
-    </div>
-    <section id="Juega" class="h2-content">
-        <h2>¡Juega!</h2>
-    </section>
-    <div class="play-container">
-        <ul>
-            <li><a href="#imagen1">Santa Run</a></li>
-            <li><a href="#imagen2">Christmas Crush</a></li>
-            <li><a href="#imagen3">Memory Navideño</a></li>
-        </ul>
-        <div class="pictures-container">
-            <div id="imagen1">
-                <img src="Images/santa-run.jpg" alt="imagen1">
-            </div>
-            <div id="imagen2">
-                <img src="Images/christmas-crush.jpeg" alt="imagen2">
-            </div>
-            <div id="imagen3">
-                <img src="Images/memory-de-navidad.jpg" alt="imagen3">
-            </div>
+    <div class="carta">
+        <div class="img-container">
+            <img src="Images/Lucía.jpg" alt="Foto de Lucía">
+        </div>
+        <div class="info-container">
+            <p><strong>Nombre:</strong> Lucía</p>
+            <p><strong>Ciudad:</strong> Zaragoza</p>
+            <p><strong>País:</strong> España</p><br>
+            <p>Querido Papá Noel, espero recibir una bicicleta nueva y caramelos.</p>
         </div>
     </div>
-    <footer class="footer">
-        <div class="footer-cont">
-            <div class="row">
-                <div class="footer-cont-col">
-                    <h4>Sobre nosotros</h4>
-                    <ul>                        
-                        <li><a href="#">Nuestros servicios</a></li>
-                        <li><a href="#">Política de privacidad</a></li>
-                    </ul>
-                </div>
-                <div class="footer-cont-col">
-                    <h4>Información</h4>
-                    <ul>
-                        <li><a href="#">FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-cont-col">
-                    <h4>Útiles</h4>
-                    <ul>
-                        <li><a href="#">Cuidado con el grinch</a></li>
-                        <li><a href="#">Sobre Papá Noel</a></li>
-                    </ul>
-                </div>
-                <div class="footer-cont-col">
-                    <h4>Contacto</h4>
-                        <div class="redes-sociales">
-                            <a href="https://www.instagram.com/">
-                                <img src="Images/instagram.png" alt="instagram" width="30">
-                            </a>
-                            <a href="https://www.facebook.com/">
-                                <img src="Images/facebook.png" alt="instagram" width="30">
-                            </a>
-                            <a href="https://www.whatsapp.com/">
-                                <img src="Images/was.png" alt="instagram" width="30">
-                            </a>
-                        </div>
-                </div> 
-            </div>              
+</div>
+<section id="Envia_tu_carta" class="h2-content">
+    <h2>Envía tu carta</h2>
+</section>
+<div class="form-container">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre">
         </div>
-    </footer>
+        <div class="form-group">
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" id="apellidos" name="apellidos">
+        </div>
+        <div class="form-group">
+            <label for="correo">Correo electrónico:</label>
+            <input type="email" id="correo" name="correo">
+        </div>
+        <div class="form-group">
+            <label for="contraseña">Contraseña:</label>
+            <input type="password" id="contraseña" name="contraseña">
+        </div>
+        <div class="form-group">
+            <label for="ciudad">Ciudad:</label>
+            <input type="text" id="ciudad" name="ciudad">
+        </div>
+        <div class="form-group">
+            <label for="país">País:</label>
+            <input type="text" id="país" name="país">
+        </div>
+        <div class="form-group">
+            <label for="carta">Carta para Papá Noel:</label>
+            <textarea id="carta" name="carta"></textarea>
+        </div>
+        <input class="botons" type="submit" value="Envía">
+        <p>Revisa nuestros <a href="#">Términos y condiciones</a></p>
+    </form>
+</div>
+<section id="Juega" class="h2-content">
+    <h2>¡Juega!</h2>
+</section>
+<div class="play-container">
+    <ul>
+        <li><a href="#imagen1">Santa Run</a></li>
+        <li><a href="#imagen2">Christmas Crush</a></li>
+        <li><a href="#imagen3">Memory Navideño</a></li>
+    </ul>
+    <div class="pictures-container">
+        <div id="imagen1">
+            <img src="Images/santa-run.jpg" alt="imagen1">
+        </div>
+        <div id="imagen2">
+            <img src="Images/christmas-crush.jpeg" alt="imagen2">
+        </div>
+        <div id="imagen3">
+            <img src="Images/memory-de-navidad.jpg" alt="imagen3">
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="footer-cont">
+        <div class="row">
+            <div class="footer-cont-col">
+                <h4>Sobre nosotros</h4>
+                <ul>                        
+                    <li><a href="#">Nuestros servicios</a></li>
+                    <li><a href="#">Política de privacidad</a></li>
+                </ul>
+            </div>
+            <div class="footer-cont-col">
+                <h4>Información</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-cont-col">
+                <h4>Útiles</h4>
+                <ul>
+                    <li><a href="#">Cuidado con el grinch</a></li>
+                    <li><a href="#">Sobre Papá Noel</a></li>
+                </ul>
+            </div>
+            <div class="footer-cont-col">
+                <h4>Contacto</h4>
+                    <div class="redes-sociales">
+                        <a href="https://www.instagram.com/">
+                            <img src="Images/instagram.png" alt="instagram" width="30">
+                        </a>
+                        <a href="https://www.facebook.com/">
+                            <img src="Images/facebook.png" alt="instagram" width="30">
+                        </a>
+                        <a href="https://www.whatsapp.com/">
+                            <img src="Images/was.png" alt="instagram" width="30">
+                        </a>
+                    </div>
+            </div> 
+        </div>              
+    </div>
+</footer>
 </body>
 </html>

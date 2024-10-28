@@ -86,7 +86,7 @@ button {
     padding: 10px 20px; 
     border: none; 
     border-radius: 5px; 
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 .button button:hover {
@@ -129,27 +129,24 @@ button {
     transition: font-size 0.3s ease, color, 0.3s ease; 
 }
 
-/* Para modal register y modal login */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
 /* Estilos para el modal de registro */
 .modal-register {
-    background-color: #fff;
-    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.95); /* Fondo blanco con transparencia */
+    padding: 40px;
     border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    max-width: 50ch;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    max-width: 80ch; /* Aumentar el ancho máximo */
     width: 100%; /* Ajuste de ancho total */
-    margin: 50px auto; /* Centrar el modal horizontalmente */
-    display: flex;
+    position: fixed; /* Para que el modal esté fijo en la pantalla */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Para centrar el modal */
+    display: none; /* Ocultar el modal por defecto */
     flex-direction: column;
     align-items: center; /* Centrar el contenido horizontalmente */
     justify-content: center; /* Centrar el contenido verticalmente */
     animation: fadeIn 0.3s ease-in-out;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Arial', sans-serif;
 }
 
 .modal-register h2 {
@@ -176,7 +173,6 @@ button {
     margin-bottom: 5px;
     color: #555;
 }
-
 .form-group-reg input,
 .form-group-reg select {
     width: 100%;
@@ -195,53 +191,36 @@ button {
     outline: none;
 }
 
-.modal-buttons {
-    display: flex;
-    flex-direction: row; /* Disponer los botones en fila */
-    justify-content: space-between;
-    gap: 15px; /* Espaciado entre los botones */
-    margin-top: 30px;
-    width: 100%; /* Asegurarse de que los botones ocupen todo el ancho */
-}
-
-.modal-buttons input[type="submit"],
-.modal-buttons input[type="reset"],
-.modal-buttons button {
-    padding: 12px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    flex: 1; /* Hacer que los botones ocupen el mismo espacio */
-    transition: background-color 0.3s, transform 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-buttons input[type="submit"] {
+input[type="submit"] {
     background-color: #007BFF;
     color: white;
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
 }
 
-.modal-buttons input[type="reset"] {
+input[type="reset"] {
     background-color: #FFC107;
     color: white;
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
 }
 
-.modal-buttons button {
-    background-color: #DC3545;
-    color: white;
-}
-
-.modal-buttons input[type="submit"]:hover {
+input[type="submit"]:hover {
     background-color: #0056b3;
     transform: scale(1.05);
 }
 
-.modal-buttons input[type="reset"]:hover {
+input[type="reset"]:hover {
     background-color: #e0a800;
     transform: scale(1.05);
+}
+.modal-buttons button {
+    background-color: #DC3545;
+    color: white;
 }
 
 .modal-buttons button:hover {
@@ -255,7 +234,58 @@ input:required {
 }
 
 /**/
+/* Estilos para el icono de perfil y el menú */
+#user-profile {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
 
+#user-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+#profile-menu {
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+#profile-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#profile-menu ul li {
+    margin-bottom: 10px;
+}
+
+#profile-menu ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+}
+
+#profile-menu ul li a:hover {
+    color: #007BFF;
+}
+
+/* Clase para ocultar elementos */
+.hidden {
+    display: none;
+}
+/**/
 .empezar {
     margin-top: 35px;
     padding: 10px 20px;
