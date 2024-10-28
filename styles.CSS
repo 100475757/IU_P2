@@ -130,33 +130,43 @@ button {
 }
 
 /* Para modal register y modal login */
-modal-register {
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Estilos para el modal de registro */
+.modal-register {
     background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     max-width: 50ch;
     width: 100%; /* Ajuste de ancho total */
-    position: fixed; /* Para que el modal esté fijo en la pantalla */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Para centrar el modal */
+    margin: 50px auto; /* Centrar el modal horizontalmente */
     display: flex;
     flex-direction: column;
     align-items: center; /* Centrar el contenido horizontalmente */
     justify-content: center; /* Centrar el contenido verticalmente */
+    animation: fadeIn 0.3s ease-in-out;
+    font-family: 'Roboto', sans-serif;
 }
 
 .modal-register h2 {
     color: #333;
     margin-bottom: 20px;
+    font-size: 28px;
+    text-align: center;
+    border-bottom: 2px solid #007BFF;
+    padding-bottom: 10px;
+    width: 100%;
 }
 
 .form-group-reg {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 20px;
 }
 
@@ -164,43 +174,79 @@ modal-register {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
+    color: #555;
 }
 
-.form-group-reg input {
+.form-group-reg input,
+.form-group-reg select {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
+    padding: 12px;
+    border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
+.form-group-reg input:focus,
+.form-group-reg select:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+.modal-buttons {
+    display: flex;
+    flex-direction: row; /* Disponer los botones en fila */
+    justify-content: space-between;
+    gap: 15px; /* Espaciado entre los botones */
+    margin-top: 30px;
+    width: 100%; /* Asegurarse de que los botones ocupen todo el ancho */
+}
+
+.modal-buttons input[type="submit"],
+.modal-buttons input[type="reset"],
+.modal-buttons button {
+    padding: 12px 20px;
+    font-size: 16px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-    margin-top: 15px;
+    flex: 1; /* Hacer que los botones ocupen el mismo espacio */
+    transition: background-color 0.3s, transform 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-input[type="reset"] {
-    background-color: #4CAF50;
+.modal-buttons input[type="submit"] {
+    background-color: #007BFF;
     color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-    margin-top: 15px;
 }
 
+.modal-buttons input[type="reset"] {
+    background-color: #FFC107;
+    color: white;
+}
 
-input[type="submit"]:hover {
-    background-color: #45a049;
+.modal-buttons button {
+    background-color: #DC3545;
+    color: white;
+}
+
+.modal-buttons input[type="submit"]:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.modal-buttons input[type="reset"]:hover {
+    background-color: #e0a800;
+    transform: scale(1.05);
+}
+
+.modal-buttons button:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
 }
 
 /* Estilo para los campos obligatorios */
