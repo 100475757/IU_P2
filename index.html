@@ -25,6 +25,11 @@
             <button id="btn-open-register">Registrarse</button>
             <div id="user-profile" class="hidden">
                 <img src="Images/user.png" alt="Perfil" id="profile-icon">
+                <div id="profile-menu" class="hidden">
+                    <a href="#mi-perfil">Mi perfil</a>
+                    <a href="#mis-cartas">Mis cartas</a>
+                    <a href="#cerrar-sesion">Cerrar sesión</a>
+                </div>
             </div>
         </div>     
     </nav>
@@ -229,21 +234,27 @@
     <h2>¡Juega!</h2>
 </section>
 <div class="play-container">
-    <ul>
+    <!--ul>
         <li><a href="#imagen1">Santa Run</a></li>
         <li><a href="#imagen2">Christmas Crush</a></li>
         <li><a href="#imagen3">Memory Navideño</a></li>
+    </ul-->
+    <ul class="list">
+        <li><button id="btnClickTheCircle">Click The Circle</button></li>
+        <li><button id="btnTresEnRaya">Tres en Raya</button></li>
+        <li><button id="btnJuego2">Christmas Crush</button></li>
+        <li><button id="btnJuego3">Memory Navideños</button></li>
     </ul>
-    <div class="pictures-container">
-        <div id="imagen1">
+    <div class="pictures-container" id="gameContent">
+        <!--div id="imagen1">
             <img src="Images/santa-run.jpg" alt="imagen1">
-        </div>
-        <div id="imagen2">
+        </div-->
+        <!--div id="imagen2">
             <img src="Images/christmas-crush.jpeg" alt="imagen2">
-        </div>
-        <div id="imagen3">
+        </div-->
+        <!--div id="imagen3">
             <img src="Images/memory-de-navidad.jpg" alt="imagen3">
-        </div>
+        </div-->
     </div>
 </div>
 <footer class="footer">

@@ -243,17 +243,106 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Usuario o contraseña incorrectos');
         }
     });
+    // Mostrar u ocultar el menú desplegable del perfil
+    const profileIcon = document.getElementById("profile-icon");
+    const profileMenu = document.getElementById("profile-menu");
 
-    document.getElementById('user-profile').addEventListener('click', function() {
-        document.getElementById('profile-menu').classList.toggle('hidden');
+    profileIcon.addEventListener("click", (event) => {
+        event.stopPropagation(); // Evitar que el clic en el ícono cierre el menú
+        profileMenu.classList.toggle("hidden");
     });
-    
-    document.getElementById('btn-logout').addEventListener('click', function() {
-        document.getElementById('user-profile').classList.add('hidden');
-        document.getElementById('profile-menu').classList.add('hidden');
-        document.getElementById('btn-open-login').classList.remove('hidden');
-        document.getElementById('btn-open-register').classList.remove('hidden');
-        alert('Sesión cerrada');
+
+    // Cerrar el menú si se hace clic fuera de él
+    document.addEventListener("click", (event) => {
+        if (!profileIcon.contains(event.target) && !profileMenu.contains(event.target)) {
+            profileMenu.classList.add("hidden");
+        }
     });
 });
+    //Juega
+document.addEventListener('DOMContentLoaded', function() {
+    // Lógica para manejar los clics en los botones del menú de juegos
+    document.getElementById('btnClickTheCircle').addEventListener('click', function() {
+        loadClickTheCircleGame();
+    });
+
+    document.getElementById('btnJuego2').addEventListener('click', function() {
+        loadGameImage('Images/christmas-crush.jpeg');
+    });
+
+    document.getElementById('btnJuego3').addEventListener('click', function() {
+        loadGameImage('Images/memory-de-navidad.jpg');
+    });
+
+    function loadClickTheCircleGame() {
+        const gameContent = document.getElementById('gameContent');
+        gameContent.style.backgroundImage = 'none'; // Eliminar la imagen de fondo
+        gameContent.style.backgroundColor = 'whitesmoke'; // Establecer un color de fondo
+        gameContent.innerHTML = `
+            <div id="gameBoard">
+                <div id="circle"></div>
+            </div>
+            <div id="gameInfo">
+            <p>Puntos: <span id="score">0</span></p>
+            <p>Tiempo restante: <span id="time">90</span> segundos</p>
+            </div>
+        `;
+
+        let score = 0;
+        let timeLeft = 90;
+        const circle = document.getElementById('circle');
+        const scoreDisplay = document.getElementById('score');
+        const timeDisplay = document.getElementById('time');
+        const gameBoard = document.getElementById('gameBoard');
+
+        function moveCircle() {
+            const x = Math.floor(Math.random() * (gameBoard.clientWidth - circle.clientWidth));
+            const y = Math.floor(Math.random() * (gameBoard.clientHeight - circle.clientHeight));
+            circle.style.left = `${x}px`;
+            circle.style.top = `${y}px`;
+        }
+
+        circle.addEventListener('click', function() {
+            score++;
+            scoreDisplay.textContent = score;
+            moveCircle();
+        });
+
+        const gameInterval = setInterval(function() {
+            timeLeft--;
+            timeDisplay.textContent = timeLeft;
+            if (timeLeft <= 0) {
+                clearInterval(gameInterval);
+                alert(`Juego terminado. Puntos obtenidos: ${score}`);
+                gameContent.innerHTML = ''; // Limpiar el contenido del juego
+            }
+        }, 1000);
+
+        function restoreBackground() {
+            const gameContent = document.getElementById('gameContent');
+            //gameContent.style.backgroundImage = 'url("../imagenes/gift-fondo-juego.gif")'; // Restaurar la imagen de fondo
+            gameContent.style.backgroundColor = ''; // Restaurar el color de fondo
+            gameContent.innerHTML = ''; // Limpiar el contenido del juego
+        }
+
+        moveCircle(); // Mover el círculo inicialmente
+    }
+
+    function loadGameImage(imageSrc) {
+        restoreBackground();
+        const gameContent = document.getElementById('gameContent');
+        gameContent.innerHTML = `<img src="${imageSrc}" alt="Juego" style="width: 100%;">`;
+    }
+
+    function restoreBackground() {
+        const gameContent = document.getElementById('gameContent');
+        //gameContent.style.backgroundImage = 'url("../imagenes/gift-fondo-juego.gif")'; // Restaurar la imagen de fondo
+        gameContent.style.backgroundColor = ''; // Restaurar el color de fondo
+        gameContent.innerHTML = ''; // Limpiar el contenido del juego
+    }
+});
+
+
+
+
  
