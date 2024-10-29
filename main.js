@@ -235,15 +235,25 @@ document.addEventListener('DOMContentLoaded', function() {
         if (user) {
             alert('Inicio de sesión exitoso');
             document.getElementById('modal-login').close();
+            document.getElementById('btn-open-login').classList.add('hidden');
+            document.getElementById('btn-open-register').classList.add('hidden');
+            document.getElementById('user-profile').classList.remove('hidden');
             
         } else {
             alert('Usuario o contraseña incorrectos');
         }
     });
-});
 
+    document.getElementById('user-profile').addEventListener('click', function() {
+        document.getElementById('profile-menu').classList.toggle('hidden');
+    });
     
-
-
-        
-
+    document.getElementById('btn-logout').addEventListener('click', function() {
+        document.getElementById('user-profile').classList.add('hidden');
+        document.getElementById('profile-menu').classList.add('hidden');
+        document.getElementById('btn-open-login').classList.remove('hidden');
+        document.getElementById('btn-open-register').classList.remove('hidden');
+        alert('Sesión cerrada');
+    });
+});
+ 

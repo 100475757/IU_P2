@@ -232,13 +232,24 @@ input[type="reset"]:hover {
 input:required {
     border-color: #ff4500;
 }
-
 /**/
-/* Estilos para el icono de perfil y el menú */
+
+/* Estilos para el icono de perfil */
+.user-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-controls .hidden {
+    display: none;
+}
+
 #user-profile {
     display: flex;
     align-items: center;
     cursor: pointer;
+    position: relative;
 }
 
 #user-profile img {
@@ -247,45 +258,10 @@ input:required {
     border-radius: 50%;
 }
 
-#profile-menu {
-    position: absolute;
-    top: 60px;
-    right: 10px;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: none;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px;
-}
-
-#profile-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-#profile-menu ul li {
-    margin-bottom: 10px;
-}
-
-#profile-menu ul li a {
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
-}
-
-#profile-menu ul li a:hover {
-    color: #007BFF;
-}
-
 /* Clase para ocultar elementos */
 .hidden {
-    display: none;
+    visibility: hidden;
 }
-/**/
 .empezar {
     margin-top: 35px;
     padding: 10px 20px;
