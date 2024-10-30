@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navidades Norteñas</title>
     <link rel="icon" type="image/jpg" href="Images/reno.jpg">
-    <link rel="stylesheet" href="styles.CSS"> 
-    <script src="main.js"></script>
+    <link rel="stylesheet" href="Style/styles.CSS"> 
+    <script src="JS/main.js"></script>
 </head>
 <body>
     <nav> 
@@ -26,13 +26,49 @@
             <div id="user-profile" class="hidden">
                 <img src="Images/user.png" alt="Perfil" id="profile-icon">
                 <div id="profile-menu" class="hidden">
-                    <a href="#mi-perfil">Mi perfil</a>
-                    <a href="#mis-cartas">Mis cartas</a>
-                    <a href="#cerrar-sesion">Cerrar sesión</a>
+                    <a href="#mi-perfil" id="miPerfilLink">Mi perfil</a>
+                    <a href="#mis-cartas" id="misCartasLink">Mis cartas</a>
+                    <a href="#cerrar-sesion" id="logout">Cerrar sesión</a>
                 </div>
             </div>
         </div>     
     </nav>
+    <dialog id="modal-profile">
+        <h2>Datos de Usuario</h2>
+        <form id="profileForm" action="#" method="POST">
+            <div class="form-group">
+                <label for="profileName">Nombre *</label>
+                <input type="text" id="profileName" name="profileName" required minlength="3">
+            </div>
+            <div class="form-group">
+                <label for="profileEmail">Correo electrónico *</label>
+                <input type="email" id="profileEmail" name="profileEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="profileCity">Ciudad</label>
+                <input type="text" id="profileCity" name="profileCity">
+            </div>
+            <div class="form-group">
+                <label for="profileCountry">País</label>
+                <input type="text" id="profileCountry" name="profileCountry">
+            </div>
+            <div class="form-group">
+                <label for="profileGender">Género</label>
+                <select id="profileGender" name="profileGender">
+                    <option value="male">Masculino</option>
+                    <option value="female">Femenino</option>
+                    <option value="other">Otro</option>
+                </select>
+            </div>
+            <button type="submit">Guardar cambios</button>
+            <button type="button" id="btn-close-profile">Cancelar</button>
+        </form>
+    </dialog>
+    <dialog id="modal-mis-cartas">
+        <h2>Mis Cartas</h2>
+        <div id="misCartasContent"></div>
+        <button type="button" id="btn-close-mis-cartas">Cerrar</button>
+    </dialog>
     <section id="Inicio">
         <div class="header">
             <h1 class="titulo">¡Papá Noel te espera!</h1>
@@ -197,34 +233,26 @@
     <h2>Envía tu carta</h2>
 </section>
 <div class="form-container">
-    <form class="form-horizontal">
+    <form class="form-horizontal" id="sendLetter">
         <div class="form-group">
             <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre">
-        </div>
-        <div class="form-group">
-            <label for="apellidos">Apellidos:</label>
-            <input type="text" id="apellidos" name="apellidos">
+            <input type="text" id="nombre" name="nombre" required>
         </div>
         <div class="form-group">
             <label for="correo">Correo electrónico:</label>
-            <input type="email" id="correo" name="correo">
-        </div>
-        <div class="form-group">
-            <label for="contraseña">Contraseña:</label>
-            <input type="password" id="contraseña" name="contraseña">
+            <input type="email" id="correo" name="correo" required>
         </div>
         <div class="form-group">
             <label for="ciudad">Ciudad:</label>
-            <input type="text" id="ciudad" name="ciudad">
+            <input type="text" id="ciudad" name="ciudad" required>
         </div>
         <div class="form-group">
             <label for="país">País:</label>
-            <input type="text" id="país" name="país">
+            <input type="text" id="pais" name="país" required>
         </div>
         <div class="form-group">
             <label for="carta">Carta para Papá Noel:</label>
-            <textarea id="carta" name="carta"></textarea>
+            <textarea id="carta" name="carta" required></textarea>
         </div>
         <input class="botons" type="submit" value="Envía">
         <p>Revisa nuestros <a href="#">Términos y condiciones</a></p>
@@ -234,28 +262,12 @@
     <h2>¡Juega!</h2>
 </section>
 <div class="play-container">
-    <!--ul>
-        <li><a href="#imagen1">Santa Run</a></li>
-        <li><a href="#imagen2">Christmas Crush</a></li>
-        <li><a href="#imagen3">Memory Navideño</a></li>
-    </ul-->
     <ul class="list">
         <li><button id="btnClickTheCircle">Click The Circle</button></li>
-        <li><button id="btnTresEnRaya">Tres en Raya</button></li>
         <li><button id="btnJuego2">Christmas Crush</button></li>
         <li><button id="btnJuego3">Memory Navideños</button></li>
     </ul>
-    <div class="pictures-container" id="gameContent">
-        <!--div id="imagen1">
-            <img src="Images/santa-run.jpg" alt="imagen1">
-        </div-->
-        <!--div id="imagen2">
-            <img src="Images/christmas-crush.jpeg" alt="imagen2">
-        </div-->
-        <!--div id="imagen3">
-            <img src="Images/memory-de-navidad.jpg" alt="imagen3">
-        </div-->
-    </div>
+    <div class="pictures-container" id="contenido"></div>
 </div>
 <footer class="footer">
     <div class="footer-cont">

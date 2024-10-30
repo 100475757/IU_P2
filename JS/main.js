@@ -234,6 +234,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (user) {
             alert('Inicio de sesión exitoso');
+            localStorage.setItem('currentUser', JSON.stringify(user));
             document.getElementById('modal-login').close();
             document.getElementById('btn-open-login').classList.add('hidden');
             document.getElementById('btn-open-register').classList.add('hidden');
@@ -258,91 +259,298 @@ document.addEventListener('DOMContentLoaded', function() {
             profileMenu.classList.add("hidden");
         }
     });
-});
-    //Juega
-document.addEventListener('DOMContentLoaded', function() {
-    // Lógica para manejar los clics en los botones del menú de juegos
-    document.getElementById('btnClickTheCircle').addEventListener('click', function() {
-        loadClickTheCircleGame();
+    
+    // Función para cargar los datos del usuario desde localStorage
+    // Función para cargar los datos del usuario desde localStorage
+    function cargarDatosUsuario() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+        if (currentUser) {
+            document.getElementById('profileName').value = currentUser.username || '';
+            document.getElementById('profileEmail').value = currentUser.email || '';
+            document.getElementById('profileCity').value = currentUser.city || '';
+            document.getElementById('profileCountry').value = currentUser.country || '';
+            document.getElementById('profileGender').value = currentUser.gender || 'male';
+        }
+    }
+
+    // Abrir el pop-up de perfil
+    document.getElementById('miPerfilLink').addEventListener('click', function() {
+        cargarDatosUsuario();
+        document.getElementById('modal-profile').showModal();
     });
 
-    document.getElementById('btnJuego2').addEventListener('click', function() {
-        loadGameImage('Images/christmas-crush.jpeg');
+    // Cerrar el pop-up de perfil
+    document.getElementById('btn-close-profile').addEventListener('click', function() {
+        document.getElementById('modal-profile').close();
     });
 
-    document.getElementById('btnJuego3').addEventListener('click', function() {
-        loadGameImage('Images/memory-de-navidad.jpg');
+    // Manejar la edición del perfil
+    document.getElementById('profileForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Obtener el usuario actual
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+        if (currentUser) {
+            // Actualizar los datos del usuario actual
+            const userData = {
+                ...currentUser, // Mantiene otros datos previos
+                username: document.getElementById('profileName').value,
+                email: document.getElementById('profileEmail').value,
+                city: document.getElementById('profileCity').value,
+                country: document.getElementById('profileCountry').value,
+                gender: document.getElementById('profileGender').value
+            };
+
+            // Actualizar la lista de usuarios en Local Storage
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            users = users.map(user => user.username === currentUser.username ? userData : user);
+
+            // Guardar los cambios en Local Storage
+            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('currentUser', JSON.stringify(userData));
+            
+            alert('Perfil actualizado');
+            document.getElementById('modal-profile').close();
+        } else {
+            alert('Error al actualizar el perfil del usuario.');
+        }
+    });
+        // Cartas
+    document.getElementById('misCartasLink').addEventListener('click', function() {
+        const letterList = document.getElementById('misCartasContent');
+        letterList.innerHTML = ''; // Limpiar la lista de cartas
+        const storedUserData = localStorage.getItem('currentUser');
+        if (storedUserData) {
+            const userData = JSON.parse(storedUserData);
+            if (userData.letters && userData.letters.length > 0) {
+                userData.letters.forEach((letter, index) => {
+                    const listItem = document.createElement('li');
+                    listItem.classList.add('letter');
+                    listItem.setAttribute('draggable', true);
+                    listItem.setAttribute('data-index', index);
+                    listItem.innerHTML = `
+                        <p><strong>Nombre:</strong> ${letter.nombre}</p>
+                        <p><strong>Email:</strong> ${letter.correo}</p>
+                        <p><strong>Ciudad:</strong> ${letter.ciudad}</p>
+                        <p><strong>País:</strong> ${letter.pais}</p>
+                        <p><strong>Carta:</strong> ${letter.carta}</p>
+                        <button onclick="deleteLetter(${index})">Borrar</button>
+                    `;
+                    letterList.appendChild(listItem);
+                });
+                enableDragAndDrop();
+            } else {
+                letterList.innerHTML = '<p>No hay cartas guardadas</p>';
+            }
+            document.getElementById('modal-mis-cartas').showModal();
+        }
+    });
+    document.getElementById('btn-close-mis-cartas').addEventListener('click', function() {
+        document.getElementById('modal-mis-cartas').close();
+    });
+    document.getElementById("logout").addEventListener("click", function() {
+        if (confirm('¿Estás seguro de que deseas cerrar sesión?')) {
+            localStorage.removeItem('currentUser');
+            document.getElementById('btn-open-login').classList.remove('hidden');
+            document.getElementById('btn-open-register').classList.remove('hidden');
+            document.getElementById('user-profile').classList.add('hidden');
+        }
     });
 
+    window.deleteLetter = function(index) {
+        const storedUserData = localStorage.getItem('currentUser');
+        if (storedUserData) {
+            const userData = JSON.parse(storedUserData);
+            userData.letters.splice(index, 1);
+            localStorage.setItem('currentUser', JSON.stringify(userData));
+
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            users = users.map(user => user.username === userData.username ? userData : user);
+            localStorage.setItem('users', JSON.stringify(users));
+            document.getElementById('misCartasLink').click();
+        }
+    }
+
+    // Manejar el envío de la carta
+    document.getElementById('sendLetter').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const nombre = document.getElementById('nombre').value;
+        const correo = document.getElementById('correo').value;
+        const ciudad = document.getElementById('ciudad').value;
+        const pais = document.getElementById('pais').value;
+        const carta = document.getElementById('carta').value;
+
+        const storedUserData = localStorage.getItem('currentUser');
+        if (!storedUserData) {
+            alert('Debes iniciar sesión para enviar una carta.');
+            return;
+        }
+
+        const userData = JSON.parse(storedUserData);
+        if (userData.email !== correo) {
+            alert('El correo electrónico debe ser el mismo que utilizaste para registrarte.');
+            return;
+        }
+
+        const newLetter = {
+            nombre: nombre,
+            correo: correo,
+            ciudad: ciudad,
+            pais: pais,
+            carta: carta
+        };
+
+        if (!userData.letters) {
+            userData.letters = [];
+        }
+        userData.letters.push(newLetter);
+
+        localStorage.setItem('currentUser', JSON.stringify(userData));
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        users = users.map(user => user.username === userData.username ? userData : user);
+        localStorage.setItem('users', JSON.stringify(users));
+        alert('Carta enviada');
+        document.getElementById('sendLetter').reset();
+    });
+
+    // Función para habilitar drag and drop
+    function enableDragAndDrop() {
+        const letters = document.querySelectorAll('.letter');
+        let dragSrcEl = null;
+
+        function handleDragStart(event) {
+            dragSrcEl = this;
+            event.dataTransfer.effectAllowed = 'move';
+            event.dataTransfer.setData('text/html', this.innerHTML);
+            this.classList.add('dragging');
+        }
+
+        function handleDragOver(event) {
+            if (event.preventDefault) {
+                event.preventDefault();
+            }
+            event.dataTransfer.dropEffect = 'move';
+            return false;
+        }
+
+        function handleDrop(event) {
+            if (event.stopPropagation) {
+                event.stopPropagation();
+            }
+            if (dragSrcEl !== this) {
+                dragSrcEl.innerHTML = this.innerHTML;
+                this.innerHTML = event.dataTransfer.getData('text/html');
+                updateLettersOrder();
+            }
+            return false;
+        }
+
+        function handleDragEnd() {
+            letters.forEach(letter => {
+                letter.classList.remove('dragging');
+            });
+        }
+
+        letters.forEach(letter => {
+            letter.addEventListener('dragstart', handleDragStart, false);
+            letter.addEventListener('dragover', handleDragOver, false);
+            letter.addEventListener('drop', handleDrop, false);
+            letter.addEventListener('dragend', handleDragEnd, false);
+        });
+    }
+
+    function updateLettersOrder() {
+        const lettersList = document.getElementById('misCartasContent');
+        const letters = lettersList.querySelectorAll('.letter');
+        const storedUserData = localStorage.getItem('currentUser');
+        if (storedUserData) {
+            const userData = JSON.parse(storedUserData);
+            userData.letters = Array.from(letters).map(letter => {
+                const index = letter.getAttribute('data-index');
+                return userData.letters[index];
+            });
+            localStorage.setItem('currentUser', JSON.stringify(userData));
+
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            users = users.map(user => user.username === userData.username ? userData : user);
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        // Lógica para manejar los clics en los botones del menú de juegos
+    const gameButtons = {
+        btnClickTheCircle: loadClickTheCircleGame,
+        btnJuego2: () => loadGameImage('Images/christmas-crush.jpeg'),
+        btnJuego3: () => loadGameImage('Images/memory-de-navidad.jpg')
+    };
+    
+    Object.keys(gameButtons).forEach(buttonId => {
+        document.getElementById(buttonId).addEventListener('click', gameButtons[buttonId]);
+    });
+    
     function loadClickTheCircleGame() {
-        const gameContent = document.getElementById('gameContent');
-        gameContent.style.backgroundImage = 'none'; // Eliminar la imagen de fondo
-        gameContent.style.backgroundColor = 'whitesmoke'; // Establecer un color de fondo
-        gameContent.innerHTML = `
-            <div id="gameBoard">
+        const contenido = document.getElementById('contenido');
+        setContenidoStyle(contenido, 'black', 'none');
+        contenido.innerHTML = `
+            <div id="Info">
+                <p>Puntos: <span id="score">0</span></p>
+                <p>Tiempo restante: <span id="time">90</span> segundos</p>
+            </div>
+            <div id="tablero">
                 <div id="circle"></div>
             </div>
-            <div id="gameInfo">
-            <p>Puntos: <span id="score">0</span></p>
-            <p>Tiempo restante: <span id="time">90</span> segundos</p>
-            </div>
         `;
-
+    
         let score = 0;
         let timeLeft = 90;
         const circle = document.getElementById('circle');
         const scoreDisplay = document.getElementById('score');
         const timeDisplay = document.getElementById('time');
-        const gameBoard = document.getElementById('gameBoard');
-
-        function moveCircle() {
-            const x = Math.floor(Math.random() * (gameBoard.clientWidth - circle.clientWidth));
-            const y = Math.floor(Math.random() * (gameBoard.clientHeight - circle.clientHeight));
+        const tablero = document.getElementById('tablero');
+    
+        const moveCircle = () => {
+            const x = Math.floor(Math.random() * (tablero.clientWidth - circle.clientWidth));
+            const y = Math.floor(Math.random() * (tablero.clientHeight - circle.clientHeight));
             circle.style.left = `${x}px`;
             circle.style.top = `${y}px`;
-        }
-
-        circle.addEventListener('click', function() {
+        };
+    
+        circle.addEventListener('click', () => {
             score++;
             scoreDisplay.textContent = score;
             moveCircle();
         });
-
-        const gameInterval = setInterval(function() {
+    
+        const gameInterval = setInterval(() => {
             timeLeft--;
             timeDisplay.textContent = timeLeft;
             if (timeLeft <= 0) {
                 clearInterval(gameInterval);
                 alert(`Juego terminado. Puntos obtenidos: ${score}`);
-                gameContent.innerHTML = ''; // Limpiar el contenido del juego
+                restoreBackground();
             }
         }, 1000);
-
-        function restoreBackground() {
-            const gameContent = document.getElementById('gameContent');
-            //gameContent.style.backgroundImage = 'url("../imagenes/gift-fondo-juego.gif")'; // Restaurar la imagen de fondo
-            gameContent.style.backgroundColor = ''; // Restaurar el color de fondo
-            gameContent.innerHTML = ''; // Limpiar el contenido del juego
-        }
-
+    
         moveCircle(); // Mover el círculo inicialmente
     }
-
+    
     function loadGameImage(imageSrc) {
         restoreBackground();
-        const gameContent = document.getElementById('gameContent');
-        gameContent.innerHTML = `<img src="${imageSrc}" alt="Juego" style="width: 100%;">`;
+        document.getElementById('contenido').innerHTML = `<img src="${imageSrc}" alt="Juego" style="width: 100%;">`;
     }
-
+    
+    function setContenidoStyle(element, color, image) {
+        element.style.backgroundColor = color;
+        element.style.backgroundImage = image;
+    }
+    
     function restoreBackground() {
-        const gameContent = document.getElementById('gameContent');
-        //gameContent.style.backgroundImage = 'url("../imagenes/gift-fondo-juego.gif")'; // Restaurar la imagen de fondo
-        gameContent.style.backgroundColor = ''; // Restaurar el color de fondo
-        gameContent.innerHTML = ''; // Limpiar el contenido del juego
+        const contenido = document.getElementById('contenido');
+        contenido.innerHTML = ''; // Limpiar el contenido del juego
     }
 });
-
-
-
-
- 
+});
+   

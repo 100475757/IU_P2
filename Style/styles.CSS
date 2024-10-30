@@ -131,20 +131,20 @@ button {
 
 /* Estilos para el modal de registro */
 .modal-register {
-    background-color: rgba(255, 255, 255, 0.95); /* Fondo blanco con transparencia */
+    background-color: rgba(255, 255, 255, 0.95); 
     padding: 40px;
     border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
-    max-width: 80ch; /* Aumentar el ancho máximo */
-    width: 100%; /* Ajuste de ancho total */
-    position: fixed; /* Para que el modal esté fijo en la pantalla */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+    max-width: 80ch; 
+    width: 100%; 
+    position: fixed; 
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Para centrar el modal */
-    display: none; /* Ocultar el modal por defecto */
+    transform: translate(-50%, -50%); 
+    display: none; 
     flex-direction: column;
-    align-items: center; /* Centrar el contenido horizontalmente */
-    justify-content: center; /* Centrar el contenido verticalmente */
+    align-items: center; 
+    justify-content: center; 
     animation: fadeIn 0.3s ease-in-out;
     font-family: 'Arial', sans-serif;
 }
@@ -228,13 +228,11 @@ input[type="reset"]:hover {
     transform: scale(1.05);
 }
 
-/* Estilo para los campos obligatorios */
 input:required {
     border-color: #ff4500;
 }
 /**/
 
-/* Estilos para el icono de perfil */
 .user-controls {
     display: flex;
     align-items: center;
@@ -266,7 +264,6 @@ input:required {
     z-index: 1000;
 }
 
-/* Estilo de las opciones del menú */
 #profile-menu a {
     color: #333;
     padding: 10px 15px;
@@ -274,15 +271,39 @@ input:required {
     display: block;
 }
 
-/* Hover en las opciones */
 #profile-menu a:hover {
     background-color: #f2f2f2;
 }
 
-/* Clase para ocultar elementos */
 .hidden {
-    opacity: 0
+    opacity: 0;
 }
+
+/* Pop up Mi perfil */
+#modal-profile {
+    width: 300px;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#modal-profile .form-group {
+    margin-bottom: 15px;
+}
+
+#modal-profile .form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#modal-profile .form-group input,
+#modal-profile .form-group select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
 .empezar {
     margin-top: 35px;
     padding: 10px 20px;
@@ -544,32 +565,33 @@ h3 {
     margin-left: 20vh;
 }
 
-/*Practica-2*/
-#gameContent {
+#contenido {
     display: flex;
     align-items: center;
 }
 
-#gameBoard {
+#tablero {
     position: relative;
     width: 100%;
     height: 100%;
-    border: 1px solid black;
+    border: 1px solid blue;
 }
 
-#gameInfo {
+#Info {
     width: 33%;
     font-size: 24px; 
     color: black; 
     font-weight: bold; 
     text-align: center; 
-    background-color: whitesmoke;
+    background-color: gold;
+    margin-bottom: 10px;
+    padding: 10px, 0;
 }
 
 #circle {
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     background-color: blue;
     border-radius: 50%;
 }
@@ -639,7 +661,7 @@ ul{
 
 /*Parte responsive*/
 
-/* Para pantallas de móvil (600px) */
+/* Para pantallas de movil (600px) */
 @media (max-width: 600px) {
     body {
         padding: 0 10px;
@@ -660,6 +682,10 @@ ul{
         margin-left: -20px;
     }
 
+    #btn-open-login{
+        margin-left: 20px;
+    }
+
     .logo img {
         width: 30px;
         height: 30px;
@@ -670,7 +696,7 @@ ul{
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: 5px;
+        gap: 10px;
     }
 
     .menu li {
@@ -769,6 +795,17 @@ ul{
         height: 80px;
     }
      
+    .play-container button {
+        text-decoration: none;
+        color: white;
+        padding: 10px;
+        background-color: blue;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        border: none;
+        cursor: pointer;
+    }
+
     .footer-cont {
         display: flex;
         flex-direction: column;
@@ -852,6 +889,9 @@ ul{
         transition: background-color 0.3s;
     }
 
+    #btn-open-login{
+        margin-left: 5px;
+    }
     .button button:hover {
         background-color: rgba(255, 255, 255, 0.8);
     }
@@ -911,6 +951,17 @@ ul{
     .carta img {
         width: 100px;
         height: 100px;
+    }
+
+    .play-container button {
+        text-decoration: none;
+        color: white;
+        padding: 10px;
+        background-color: blue;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        border: none;
+        cursor: pointer;
     }
 
     .footer-cont {
